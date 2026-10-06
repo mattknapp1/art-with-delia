@@ -8,6 +8,7 @@
 <meta property="og:title" content="Art with Delia">
 <meta property="og:description" content="Bilingual art and craft group lessons for kids TK–3rd grade.">
 <meta property="og:image" content="img/logo.jpg">
+<meta name="theme-color" content="#EEEAE0">
 <link rel="icon" href="img/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,12 +76,26 @@ header.top .wrap { display: flex; align-items: center; justify-content: space-be
 nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; flex-wrap: wrap; }
 nav a { color: var(--graphite); text-decoration: none; font-weight: 600; font-size: .95rem; }
 nav a:hover { color: var(--cobalt); }
-@media (max-width: 720px) { nav .opt { display: none; } nav ul { gap: 16px; } }
+.menu-btn { display: none; }
+@media (max-width: 720px) {
+  header.top .wrap { flex-wrap: wrap; padding-block: 10px; }
+  .brand { font-size: 1.6rem; }
+  .menu-btn { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 0 10px; background: transparent; border: 1.5px solid var(--rule); border-radius: 12px; cursor: pointer; }
+  .menu-btn span { display: block; height: 2px; background: var(--graphite); border-radius: 2px; transition: transform .2s ease, opacity .2s ease; }
+  .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  nav { flex-basis: 100%; display: none; }
+  nav.open { display: block; }
+  nav ul { flex-direction: column; gap: 0; padding-block: 6px 4px; }
+  nav li { border-top: 1px solid var(--rule); }
+  nav a { display: block; padding: 14px 4px; font-size: 1.05rem; }
+}
 
 /* Buttons */
 .btn-ghost { border-color: var(--marigold); }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 700 1rem var(--body); padding: 13px 22px; border-radius: 999px; text-decoration: none; border: 2px solid var(--graphite); cursor: pointer; transition: transform .15s ease; }
-.btn:hover { transform: translateY(-2px); }
+@media (hover: hover) { .btn:hover { transform: translateY(-2px); } }
 .btn-primary { background: var(--marigold); color: var(--on-accent); border-color: var(--marigold); }
 .btn-ghost { background: transparent; color: var(--graphite); }
 
@@ -164,7 +179,7 @@ section { padding-block: 72px; }
 .gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
 .gallery figure:nth-child(odd) { transform: rotate(-1.2deg); }
 .gallery figure:nth-child(even) { transform: rotate(1deg); }
-.gallery figure:hover { transform: rotate(0) translateY(-4px); }
+@media (hover: hover) { .gallery figure:hover { transform: rotate(0) translateY(-4px); } }
 .gallery figcaption { font-family: var(--hand); font-size: 1.4rem; color: #3C4436; padding: 8px 4px 4px; text-align: center; }
 .gallery button { all: unset; cursor: zoom-in; display: block; }
 .gallery button:focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; }
@@ -211,6 +226,38 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   .hero .actions .btn, .email .actions .btn { flex: 1 1 100%; justify-content: center; }
 }
 
+/* Phone layout */
+@media (max-width: 720px) {
+  section { padding-block: 52px; }
+  .head { margin-bottom: 28px; }
+  .hero { padding-block: 28px 48px; }
+  .hero .wrap { gap: 28px; }
+  .hero-art { width: min(58%, 220px); }
+  .hero-art .card { padding: 9px; }
+  .hero h1 { font-size: clamp(2.1rem, 9.5vw, 2.6rem); margin-block: 6px 14px; }
+  .hero .lede { font-size: 1.08rem; }
+  .about figure { max-width: 210px; }
+  .about-text .hello { font-size: 2.2rem; }
+  .about-text p { font-size: 1.05rem; }
+  .about-text .pull { font-size: 1.3rem; }
+  .mission { padding-block: 44px; }
+  /* services become a swipeable row */
+  .services-grid { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 82%; gap: 16px; max-width: none; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -20px; padding: 4px 20px 14px; scrollbar-width: none; }
+  .services-grid::-webkit-scrollbar { display: none; }
+  .service { scroll-snap-align: center; background: var(--sheet); border-radius: 22px; padding: 12px 12px 20px; }
+  .service p { font-size: .98rem; }
+  #swipeDots { display: flex; }
+  .ticket { padding: 22px; }
+  .moments { grid-template-columns: 1fr 1fr; gap: 14px; max-width: none; }
+  .moments figcaption b { font-size: 1.3rem; }
+  .moments figcaption span { font-size: .82rem; line-height: 1.35; }
+  .gallery figcaption { font-size: 1.15rem; line-height: 1.2; padding: 8px 2px 4px; }
+  .contact-box { padding: 28px 22px; }
+}
+.swipe-hint { display: none; justify-content: center; gap: 8px; margin-top: 6px; }
+.swipe-hint span { width: 8px; height: 8px; border-radius: 50%; background: var(--rule); transition: background .2s ease, width .2s ease; }
+.swipe-hint span.on { background: var(--marigold); width: 22px; border-radius: 4px; }
+
 /* Lightbox */
 .lb[hidden] { display: none !important; }
 .lb { position: fixed; inset: 0; background: rgba(15,15,17,.9); display: grid; place-items: center; z-index: 50; padding: 24px; }
@@ -224,7 +271,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top">Art with Delia</a>
-    <nav aria-label="Main">
+    <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mainNav" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <nav aria-label="Main" id="mainNav">
       <ul>
         <li class="opt"><a href="#about">About</a></li>
         <li><a href="#classes">Classes</a></li>
@@ -301,6 +349,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           <p>Bug gardens, honeycomb trays, rainbow clouds, and water-bead bins. Themed, hands-on play that builds fine motor skills and plenty of giggles.</p>
         </article>
       </div>
+      <div class="swipe-hint" id="swipeDots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+
     </div>
   </section>
 
@@ -405,6 +455,23 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       navigator.clipboard.writeText(text).then(function () { msg.textContent = 'Copied: ' + text; }, fallback);
     } catch (e) { fallback(); }
   });
+
+  var menuBtn = document.getElementById('menuBtn'), nav = document.getElementById('mainNav');
+  menuBtn.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.setAttribute('aria-label', 'Open menu'); }
+  });
+
+  var grid = document.querySelector('.services-grid'), dots = document.querySelectorAll('#swipeDots span');
+  grid.addEventListener('scroll', function () {
+    var cards = grid.children, mid = grid.scrollLeft + grid.clientWidth / 2, best = 0, bd = Infinity;
+    for (var n = 0; n < cards.length; n++) { var c = cards[n].offsetLeft + cards[n].offsetWidth / 2, d = Math.abs(c - mid); if (d < bd) { bd = d; best = n; } }
+    dots.forEach(function (el, n) { el.classList.toggle('on', n === best); });
+  }, { passive: true });
 
   var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
   var last = null;
